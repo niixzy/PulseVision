@@ -1,5 +1,48 @@
 <!DOCTYPE html>
 <html>
+  <html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Protegido</title>
+    <style>
+        /* Oculta o conteúdo quando tentam inspecionar */
+        html { display: none; }
+        body {
+            user-select: none; /* Impede seleção de texto */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+    <script>
+        // Libera a visualização apenas para navegadores que executam este script
+        document.documentElement.style.display = "block";
+
+        // Desabilita o botão direito
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('Ação desativada neste site.');
+        });
+
+        // Impede atalhos comuns de cópia
+        document.addEventListener('keydown', function(e) {
+            if (
+                e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'a') || // Ctrl+U, Ctrl+S, Ctrl+A
+                e.key === 'F12' || // Tecla F12
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) // Ctrl+Shift+I ou Ctrl+Shift+J
+            ) {
+                e.preventDefault();
+                alert('Esta ação está desativada.');
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Bem-vindo ao meu site protegido!</h1>
+    <p>Este é um exemplo de implementação de medidas de proteção contra clonagem.</p>
+</body>
+</html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'">
